@@ -3,7 +3,7 @@ A task scheduling solution
   
 .. Clone the repo  
 
-yarn init
+### yarn init
 
 ### yarn dev  
 To run in development mode  
