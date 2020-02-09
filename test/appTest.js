@@ -18,7 +18,7 @@ describe("Testing Task Scheduling Backend", function() {
     chai
       .request(app)
       .post("/api/personnel/login")
-      .send({ phone: "0728064120", password: "123456" })
+      .send({ phone: "0722222222", password: "123456" })
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body).to.have.property("accessToken");
