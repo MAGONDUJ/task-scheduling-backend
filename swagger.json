@@ -1,0 +1,118 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the documentation for Task Scheduling Backend",
+    "version": "1.0.0",
+    "title": "TASK SCHEDULING API",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "kariukijulius63@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "https://task-scheduling-backend.herokuapp.com",
+  "tags": [
+    {
+      "name": "Personnel",
+      "description": "Everything to do with personnel"
+    },
+    {
+      "name": "Tasks",
+      "description": "Everything to do with tasks"
+    }
+  ],
+  "schemes": ["http", "https"],
+  "paths": {
+    "/personnel/register": {
+      "post": {
+        "tags": ["Personnel"],
+        "summary": "Personnel Registration",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PersonnelModel"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/GeneralModelResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/personnel/login": {
+      "post": {
+        "tags": ["Personnel"],
+        "summary": "Personnel Login",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PersonnelModel"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/GeneralModelResponse"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "PersonnelModel": {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "GeneralModelResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

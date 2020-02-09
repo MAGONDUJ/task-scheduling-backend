@@ -11,6 +11,9 @@ const helmet = require("helmet"); // Protect against web vunerablities
 
 const routes = require("./routes");
 
+const swaggerUi = require("swagger-ui-express"),
+  swaggerDocument = require("./swagger.json");
+
 const app = express();
 app.use(compression());
 app.use(helmet());
@@ -21,10 +24,16 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Handles all 404s
-app.get("*", function(req, res, next) {
-  res.send("404... We're ready for take off.");
-});
+const swaggerOptions = {
+  explorer: false,
+  DEFAULT_MODELS_EXPAND_DEPTH: -1,
+  DEFAULT_MODEL_EXPAND_DEPTH: -1
+};
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, swaggerOptions)
+);
 
 //Register routes here
 app.use("/personnel", routes.personnel);
