@@ -9,4 +9,4 @@ A task scheduling solution
 To run in development mode  
 
 ### yarn start 
-To run the live
+To run live
