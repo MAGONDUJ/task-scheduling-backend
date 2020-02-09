@@ -1,0 +1,33 @@
+require("dotenv").config();
+const port = process.env.PORT || 2095;
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const passport = require("passport");
+const chalk = require("chalk");
+const cors = require("cors");
+const compression = require("compression"); // Compression middleware, compress responses from all routes
+const helmet = require("helmet"); // Protect against web vunerablities
+
+const routes = require("./routes");
+
+const app = express();
+app.use(compression());
+app.use(helmet());
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Register routes here
+app.use("/api/personnel", routes.personnel);
+//app.use("/api/tasks", routes.tasks);
+
+app.listen(port, () => {
+  console.log(
+    chalk.blue(`All systems go. We are ready to take off on port ${port}`)
+  );
+});
+module.exports = app;
