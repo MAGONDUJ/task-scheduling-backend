@@ -22,8 +22,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Register routes here
-app.use("/api/personnel", routes.personnel);
-//app.use("/api/tasks", routes.tasks);
+app.use("/personnel", routes.personnel);
+//app.use("/tasks", routes.tasks);
 
 app.listen(port, () => {
   console.log(
