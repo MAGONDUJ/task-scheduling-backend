@@ -7,6 +7,9 @@ A task scheduling solution
 
 ### yarn dev  
 To run in development mode  
+    
+### yarn test  
+To run unit tests
 
 ### yarn start 
 To run live
