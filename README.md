@@ -3,13 +3,13 @@ A task scheduling solution
   
 .. Clone the repo  
 
-### yarn
+CMD ### yarn
 
-### yarn dev  
+CMD ### yarn dev  
 To run in development mode  
     
-### yarn test  
+CMD ### yarn test  
 To run unit tests
 
-### yarn start 
+CMD ### yarn start 
 To run live
