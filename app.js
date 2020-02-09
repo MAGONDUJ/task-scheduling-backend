@@ -21,6 +21,11 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Handles all 404s
+app.get("*", function(req, res, next) {
+  res.send("404... We're ready for take off.");
+});
+
 //Register routes here
 app.use("/personnel", routes.personnel);
 //app.use("/tasks", routes.tasks);
