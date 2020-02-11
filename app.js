@@ -11,6 +11,19 @@ const helmet = require("helmet"); // Protect against web vunerablities
 
 const routes = require("./routes");
 
+// Database
+const db = require("./config/database");
+
+// Test DB
+db.authenticate()
+  .then(() => console.log("Database connected..."))
+  .catch(err => console.log("Error: " + err));
+db.sync()
+  .then(() =>
+    console.log(chalk.blueBright("<---------All Models sync-------->"))
+  )
+  .catch(err => console.log("Error: " + err));
+
 const swaggerUi = require("swagger-ui-express"),
   swaggerDocument = require("./swagger.json");
 
@@ -43,5 +56,6 @@ app.listen(port, () => {
   console.log(
     chalk.blue(`All systems go. We are ready to take off on port ${port}`)
   );
+  console.log(chalk.yellow(`   Connecting to Sequelize...`));
 });
 module.exports = app;
