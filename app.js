@@ -12,17 +12,7 @@ const helmet = require("helmet"); // Protect against web vunerablities
 const routes = require("./routes");
 
 // Database
-const db = require("./config/database");
-
-// Test DB
-db.authenticate()
-  .then(() => console.log("Database connected..."))
-  .catch(err => console.log("Error: " + err));
-db.sync()
-  .then(() =>
-    console.log(chalk.blueBright("<---------All Models sync-------->"))
-  )
-  .catch(err => console.log("Error: " + err));
+require("./models").connect;
 
 const swaggerUi = require("swagger-ui-express"),
   swaggerDocument = require("./swagger.json");
