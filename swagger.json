@@ -13,7 +13,7 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "task-scheduling-backend.herokuapp.com",
+  "host": "localhost:2030",
   "tags": [
     {
       "name": "Personnel",
@@ -24,7 +24,7 @@
       "description": "Everything to do with tasks"
     }
   ],
-  "schemes": ["https"],
+  "schemes": ["http"],
   "paths": {
     "/personnel/register": {
       "post": {
@@ -89,6 +89,106 @@
           }
         }
       }
+    },
+    "/tasks/add": {
+      "post": {
+        "tags": ["Tasks"],
+        "summary": "Add Tasks",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TaskModel"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/GeneralModelResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/assigned": {
+      "get": {
+        "tags": ["Tasks"],
+        "summary": "Get Tasks",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "description": "page"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "description": "limit"
+            }
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "schema": {
+              "type": "string",
+              "description": "order"
+            }
+          },
+          {
+            "in": "query",
+            "name": "orderMethod",
+            "schema": {
+              "type": "string",
+              "description": "orderMethod"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/GeneralModelResponse"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -111,6 +211,71 @@
         },
         "details": {
           "type": "object"
+        }
+      }
+    },
+    "TaskModel": {
+      "type": "object",
+      "properties": {
+        "customer_first_name": {
+          "type": "string"
+        },
+        "personnel_first_name": {
+          "type": "string"
+        },
+        "personnel_other_name": {
+          "type": "string"
+        },
+        "customer_last_name": {
+          "type": "string"
+        },
+        "customer_phone": {
+          "type": "string"
+        },
+        "agentId": {
+          "type": "string"
+        },
+        "assigned": {
+          "type": "string"
+        },
+        "in_progress": {
+          "type": "string"
+        },
+        "completed": {
+          "type": "string"
+        },
+        "deferred": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "age": {
+          "type": "string"
+        },
+        "access_code": {
+          "type": "string"
+        },
+        "splash_page": {
+          "type": "string"
+        },
+        "mpesa": {
+          "type": "string"
+        },
+        "autoplay": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "string"
+        },
+        "registration": {
+          "type": "string"
         }
       }
     }

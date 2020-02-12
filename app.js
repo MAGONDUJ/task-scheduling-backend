@@ -40,7 +40,7 @@ app.use(
 
 //Register routes here
 app.use("/personnel", routes.personnel);
-//app.use("/tasks", routes.tasks);
+app.use("/tasks", routes.tasks);
 
 app.listen(port, () => {
   console.log(

@@ -1,7 +1,6 @@
 const Sequelize = require("sequelize");
-const db = require("./index").connect;
 
-const Personnel = db.define("personnel", {
+const Personnel = {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -15,6 +14,6 @@ const Personnel = db.define("personnel", {
     type: Sequelize.STRING,
     allowNull: false
   }
-});
+};
 
 module.exports = Personnel;

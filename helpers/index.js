@@ -11,11 +11,15 @@ const verifyJwtToken = jwtHelper.verifyToken;
 
 //tasks helper
 const tasksHelper = require("./tasksHelper");
+newTask = tasksHelper.newTask;
+getTasks = tasksHelper.getTasks;
 
 module.exports = {
   newPersonnel,
   registeredCheck,
   login,
   generateJwt,
-  verifyJwtToken
+  verifyJwtToken,
+  newTask,
+  getTasks
 };

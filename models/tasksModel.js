@@ -1,7 +1,6 @@
 const Sequelize = require("sequelize");
-const db = require("./index").connect;
 
-const Task = db.define("task", {
+const Task = {
   task_id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -67,6 +66,5 @@ const Task = db.define("task", {
   registration: {
     type: Sequelize.STRING
   }
-});
-
+};
 module.exports = Task;

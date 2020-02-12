@@ -30,21 +30,30 @@ if (process.env.DATABASE_URL) {
 // Test DB
 connect
   .authenticate()
-  .then(() => console.log(chalk.cyan("Database connected...")))
-  .catch(err => console.log("Error: " + err));
-connect
-  .sync()
-  .then(() =>
-    console.log(chalk.blueBright("<---------All Models sync-------->"))
-  )
+  .then(() => {
+    console.log(chalk.cyan("Database connected..."));
+  })
   .catch(err => console.log("Error: " + err));
 
-// load models
 const personnelModel = require("./personnelModel");
-//const tasksModel = require("./tasksModel");
+const tasksModel = require("./tasksModel");
+
+const Personnel = connect.define("personnels", personnelModel, {
+  freezeTableName: true
+});
+Personnel.sync().then(function() {
+  console.log(chalk.blueBright(">---------Personnels Model sync-------->"));
+});
+
+const Task = connect.define("tasks", tasksModel, {
+  freezeTableName: true
+});
+Task.sync().then(function() {
+  console.log(chalk.blueBright(">---------Tasks Model sync-------->"));
+});
 
 module.exports = {
   connect,
-  personnelModel
-  //tasksModel
+  Personnel,
+  Task
 };

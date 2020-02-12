@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const chalk = require("chalk");
-const Personnel = require("../models/personnelModel");
+const Personnel = require("../models").Personnel;
 
 hashPassword = async pass => {
   let salt = await bcrypt.genSalt(10);
